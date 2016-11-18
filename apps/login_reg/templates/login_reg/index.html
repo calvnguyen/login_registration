@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+      <meta charset="UTF-8">
+      <title>Login and Registration</title>
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'login_reg/css/login_reg.css' %}"media="screen" title="no title"  charset="utf-8">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div id="top-section">
+      <h1 id="header-text">Login and Registration - Django</h1>
+    </div>
+    <div id="form-container">
+      
+      <form id="registration-form" action='/register' method='post'>
+        {% csrf_token %}
+
+        <label class="form-label">
+          First Name: <input id="name-text" type="text" name="first_name" placeholder="enter your first name">
+        </label>
+        <ul class="validation-error">
+          {% for message in messages %}
+            {% if 'first-name-error' in message.tags %}<li id="validation-text">{{ message }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+
+        <label class="form-label">
+          Last Name: <input id="name-text" type="text" name="last_name" placeholder="enter your last name">
+        </label>
+        <ul class="validation-error">
+          {% for message in messages %}
+            {% if 'last-name-error' in message.tags %}<li id="validation-text">{{ message }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+       
+        <label class="form-label">
+          Email Address: <input id="name-text" type="text" name="email" placeholder="enter your email">
+        </label>
+        <ul class="validation-error">
+          {% for message in messages %}
+            {% if 'email-error' in message.tags %}<li id="validation-text">{{ message }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+       
+        <label class="form-label">
+          Date of Birth: <input id="name-text" type="date" name="dob" placeholder="confirm your password">
+        </label>
+        <ul class="validation-error">
+          {% for message in messages %}
+            {% if 'dob-error' in message.tags %}<li id="validation-text">{{ message }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+
+        <label class="form-label">
+          Password: <input id="name-text" type="password" name="password" placeholder="enter your passsword">
+        </label>
+        <p id="small-text">(Password has to be at least 8 characters and contains at least 1 upper-case letter and 1 numeric value)
+        <ul class="validation-error">
+          {% for message in messages %}
+            {% if 'password-error' in message.tags %}<li id="validation-text">{{ message }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+       
+        <label class="form-label">
+          Confirm Password: <input id="name-text" type="password" name="passwordconfirm" placeholder="confirm your password">
+        </label>
+        <ul class="validation-error">
+          {% for message in messages %}
+            {% if 'password-confirm-error' in message.tags %}<li id="validation-text">{{ message }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+  
+        <input class="btn btn-info" type="submit" value="Submit">
+        <a id="user-exist" href="/login">Already has account? Click to Login</a>
+
+      </form>
+
+    </div>
+
+
+	</body>
+</html>

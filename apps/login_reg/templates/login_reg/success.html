@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+      <meta charset="UTF-8">
+      <title>Login and Registration</title>
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'login_reg/css/login_reg.css' %}"media="screen" title="no title"  charset="utf-8">
+
+            <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+     <!-- <link rel="stylesheet" type="text/css" href="result.css"> -->
+  </head>
+  <body>
+    <h1 id="header-text">Login and Registration - Welcome ! (Django)</h1>
+    <div id="result-container">
+      {% if request.session.status == 'logged' %}      
+       <h3 id="div-header">Logged in as <span id="result-text"> {{ user_account.first_name }} {{ user_account.last_name }}</span>!!!</h3>
+      {% elif request.session.status == 'registered' %}
+         <h3 id="div-header">Registered successfully as <span id="result-text"> {{ user_account.first_name }} {{ user_account.last_name }}</span>!!!</h3>
+      {% endif %}
+
+      <form action='/logout'>
+        <input class="btn btn-info" type="submit" value="Logout">
+      </form>
+      <h3 id="div-header">Your Information:</h3>
+      <table id="emails-table">
+        <thead>
+          <tr>
+            <th class="table-heading">UserID</th>
+            <th class="table-heading">First_Name</th>
+            <th class="table-heading">Last_Name</th>
+            <th class="table-heading">Email</th>
+            <th class="table-heading">Date of Birth</th>
+            <th class="table-heading">Date Entered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-data" style="text-align: center">{{ user_account.id }}</td>
+            <td class="table-data">{{ user_account.first_name }}</td>
+            <td class="table-data">{{ user_account.last_name }}</td>
+            <td class="table-data">{{ user_account.email }}</td>
+            <td id="table-data2">{{ user_account.dob }}</td>
+            <td id="table-data2">{{ user_account.created_at }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <form id="registration-form" action='/login'>
+        <input class="btn btn-info" type="submit" value="Go Back">
+      </form>
+
+
+
+
+    </div>
+
+	</body>
+</html>
